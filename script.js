@@ -1,14 +1,59 @@
+// ========== 配置区：可自行修改密码 ==========
+const QUESTION_PASSWORD = "2026";
+// ==========================================
+
+let isQuestionsUnlocked = false;
+
 // 标签切换功能
 document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         const tab = btn.dataset.tab;
         
+        // 如果点击问答库且未解锁，拦截切换
+        if (tab === 'questions' && !isQuestionsUnlocked) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.getElementById(`${tab}-tab`).classList.add('active');
+            return;
+        }
+        
+        // 正常切换
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
         
         btn.classList.add('active');
         document.getElementById(`${tab}-tab`).classList.add('active');
     });
+});
+
+// 密码解锁逻辑
+const unlockBtn = document.getElementById('unlock-btn');
+const passwordInput = document.getElementById('password-input');
+const lockError = document.getElementById('lock-error');
+const passwordLock = document.getElementById('password-lock');
+const questionsContent = document.getElementById('questions-content');
+
+function unlockQuestions() {
+    const input = passwordInput.value;
+    if (input === QUESTION_PASSWORD) {
+        isQuestionsUnlocked = true;
+        passwordLock.style.display = 'none';
+        questionsContent.style.display = 'block';
+        // 解锁后渲染问题列表
+        if (document.getElementById('question-list').children.length === 0) {
+            renderQuestions();
+        }
+    } else {
+        lockError.style.display = 'block';
+    }
+}
+
+unlockBtn.addEventListener('click', unlockQuestions);
+passwordInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        unlockQuestions();
+    }
 });
 
 // 随机抽取函数
@@ -100,6 +145,3 @@ function renderQuestions() {
         });
     });
 }
-
-// 页面加载完成后渲染
-window.addEventListener('DOMContentLoaded', renderQuestions);
