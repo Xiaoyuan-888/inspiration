@@ -56,7 +56,7 @@ passwordInput.addEventListener('keydown', (e) => {
     }
 });
 
-// 随机抽取函数
+// 随机抽取函数（仅抽签功能使用）
 function getRandomItem(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
 }
@@ -102,46 +102,31 @@ function drawCards() {
 drawBtn.addEventListener('click', drawCards);
 refreshBtn.addEventListener('click', drawCards);
 
-// 渲染采访问题列表
+// 渲染问题列表（纯浏览，无抽取功能）
 function renderQuestions() {
     const container = document.getElementById('question-list');
     const data = window.questionsData;
     
-    data.forEach((category, idx) => {
+    data.forEach((category) => {
         const item = document.createElement('div');
         item.className = 'question-item';
         
         item.innerHTML = `
             <div class="question-header">
                 <h3>${category.name}</h3>
-                <button class="random-btn" data-idx="${idx}">随机抽一个</button>
             </div>
             <div class="question-body">
                 <ul>
                     ${category.questions.map(q => `<li>${q}</li>`).join('')}
                 </ul>
-                <div class="random-result" id="random-${idx}" style="display: none;"></div>
             </div>
         `;
         
         container.appendChild(item);
         
         // 折叠展开
-        item.querySelector('.question-header').addEventListener('click', (e) => {
-            if (e.target.classList.contains('random-btn')) return;
+        item.querySelector('.question-header').addEventListener('click', () => {
             item.querySelector('.question-body').classList.toggle('open');
-        });
-        
-        // 随机抽问题
-        item.querySelector('.random-btn').addEventListener('click', (e) => {
-            e.stopPropagation();
-            const body = item.querySelector('.question-body');
-            const resultBox = document.getElementById(`random-${idx}`);
-            
-            body.classList.add('open');
-            const randomQ = getRandomItem(category.questions);
-            resultBox.textContent = `🎯 随机问题：${randomQ}`;
-            resultBox.style.display = 'block';
         });
     });
 }
