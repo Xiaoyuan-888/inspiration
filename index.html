@@ -9,31 +9,31 @@
 <body>
     <!-- 顶部保密提示 -->
     <div class="notice-bar">
-        内部录制使用 · 请勿对外传播
+        🎬 内部物料参考 · 请勿外传
     </div>
 
     <div class="container">
         <!-- 标签切换 -->
         <div class="tabs">
-            <button class="tab-btn active" data-tab="draw">灵感抽签</button>
-            <button class="tab-btn" data-tab="questions">采访问题库</button>
+            <button class="tab-btn active" data-tab="draw">✨ 灵感抽签</button>
+            <button class="tab-btn" data-tab="questions">💬 随机问答库</button>
         </div>
 
         <!-- 抽签页面 -->
         <div class="tab-content active" id="draw-tab">
             <h1 class="main-title">今天不知道拍什么？<br>来抽个灵感锦囊吧</h1>
             
-            <button id="draw-btn" class="primary-btn">抽取灵感</button>
+            <button id="draw-btn" class="primary-btn">抽取灵感 🎲</button>
 
             <div class="card-container" id="card-container">
                 <div class="card" data-type="solo">
                     <div class="card-inner">
                         <div class="card-front">
-                            <div class="card-tag">单人款</div>
+                            <div class="card-tag">🧑 单人款</div>
                             <div class="card-hint">点击抽取解锁</div>
                         </div>
                         <div class="card-back">
-                            <div class="card-tag">单人款</div>
+                            <div class="card-tag">🧑 单人款</div>
                             <h3 class="card-title"></h3>
                             <p class="card-desc"></p>
                         </div>
@@ -43,11 +43,11 @@
                 <div class="card" data-type="multi">
                     <div class="card-inner">
                         <div class="card-front">
-                            <div class="card-tag">多人款</div>
+                            <div class="card-tag">👥 多人款</div>
                             <div class="card-hint">点击抽取解锁</div>
                         </div>
                         <div class="card-back">
-                            <div class="card-tag">多人款</div>
+                            <div class="card-tag">👥 多人款</div>
                             <h3 class="card-title"></h3>
                             <p class="card-desc"></p>
                         </div>
@@ -57,11 +57,11 @@
                 <div class="card" data-type="challenge">
                     <div class="card-inner">
                         <div class="card-front">
-                            <div class="card-tag">挑战款</div>
+                            <div class="card-tag">🔥 挑战款</div>
                             <div class="card-hint">点击抽取解锁</div>
                         </div>
                         <div class="card-back">
-                            <div class="card-tag">挑战款</div>
+                            <div class="card-tag">🔥 挑战款</div>
                             <h3 class="card-title"></h3>
                             <p class="card-desc"></p>
                         </div>
@@ -69,15 +69,33 @@
                 </div>
             </div>
 
-            <button id="refresh-btn" class="secondary-btn" style="display: none;">换一组试试</button>
+            <button id="refresh-btn" class="secondary-btn" style="display: none;">换一组试试 🔄</button>
         </div>
 
-        <!-- 采访问题页面 -->
+        <!-- 随机问答库页面（默认锁定） -->
         <div class="tab-content" id="questions-tab">
-            <h2 class="section-title">采访问题库</h2>
-            <p class="section-desc">按主题分类浏览，也可随机抽取一个问题即兴提问</p>
-            
-            <div id="question-list" class="question-list"></div>
+            <!-- 密码锁定遮罩 -->
+            <div class="password-lock" id="password-lock">
+                <div class="lock-box">
+                    <div class="lock-icon">🔒</div>
+                    <p class="lock-tip">此板块需密码解锁</p>
+                    <input type="password" id="password-input" placeholder="请输入密码">
+                    <button id="unlock-btn" class="primary-btn small">解锁查看</button>
+                    <p class="lock-error" id="lock-error" style="display: none; color: #c9553c; font-size: 13px; margin-top: 8px;">密码错误，请重试</p>
+                </div>
+            </div>
+
+            <!-- 问答内容（默认隐藏） -->
+            <div id="questions-content" style="display: none;">
+                <h2 class="section-title">💬 随机问答库</h2>
+                <p class="section-desc">按主题分类浏览，也可随机抽取一个问题即兴提问</p>
+                <div id="question-list" class="question-list"></div>
+            </div>
+        </div>
+
+        <!-- 底部鼓励语 -->
+        <div class="footer-tip">
+            仅供参考 · 展示你真实的一面就好 ✨
         </div>
     </div>
 
