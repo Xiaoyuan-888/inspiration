@@ -73,6 +73,7 @@ function getRandomItem(arr) {
 const drawBtn = document.getElementById('draw-btn');
 const refreshBtn = document.getElementById('refresh-btn');
 const toggleListBtn = document.getElementById('toggle-list-btn');
+const btnGroup = document.getElementById('btn-group');
 const cards = document.querySelectorAll('.card');
 
 function drawCards() {
@@ -104,9 +105,8 @@ function drawCards() {
             }, index * 200);
         });
         
-        // 抽取后显示两个按钮
-        refreshBtn.style.display = 'block';
-        toggleListBtn.style.display = 'block';
+        // 抽取后显示按钮组
+        btnGroup.style.display = 'flex';
     }, 300);
 }
 
