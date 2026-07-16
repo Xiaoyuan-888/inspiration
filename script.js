@@ -3,6 +3,7 @@ const QUESTION_PASSWORD = "2026";
 // ==========================================
 
 let isQuestionsUnlocked = false;
+let isListRendered = false;
 
 // 标签切换功能
 document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -101,6 +102,63 @@ function drawCards() {
 
 drawBtn.addEventListener('click', drawCards);
 refreshBtn.addEventListener('click', drawCards);
+
+// 主题列表切换
+const toggleListBtn = document.getElementById('toggle-list-btn');
+const topicList = document.getElementById('topic-list');
+
+toggleListBtn.addEventListener('click', () => {
+    if (topicList.style.display === 'none') {
+        // 首次点击渲染列表
+        if (!isListRendered) {
+            renderTopicList();
+            isListRendered = true;
+        }
+        topicList.style.display = 'block';
+        toggleListBtn.textContent = '收起主题列表 ↑';
+    } else {
+        topicList.style.display = 'none';
+        toggleListBtn.textContent = '查看全部主题列表 📋';
+    }
+});
+
+// 渲染主题列表
+function renderTopicList() {
+    const container = document.getElementById('topic-list');
+    const categories = [
+        { key: 'solo', name: '🧑 单人就能拍', data: window.topicsData.solo },
+        { key: 'multi', name: '👥 需要小伙伴', data: window.topicsData.multi },
+        { key: 'challenge', name: '🔥 挑战一下！', data: window.topicsData.challenge }
+    ];
+    
+    categories.forEach(cate => {
+        const item = document.createElement('div');
+        item.className = 'topic-item';
+        
+        item.innerHTML = `
+            <div class="topic-header">
+                <h3>${cate.name}</h3>
+            </div>
+            <div class="topic-body">
+                <ul>
+                    ${cate.data.map(t => `
+                        <li>
+                            <div class="topic-title">${t.title}</div>
+                            <div class="topic-desc">${t.desc}</div>
+                        </li>
+                    `).join('')}
+                </ul>
+            </div>
+        `;
+        
+        container.appendChild(item);
+        
+        // 折叠展开
+        item.querySelector('.topic-header').addEventListener('click', () => {
+            item.querySelector('.topic-body').classList.toggle('open');
+        });
+    });
+}
 
 // 渲染问题列表（纯浏览，无抽取功能）
 function renderQuestions() {
