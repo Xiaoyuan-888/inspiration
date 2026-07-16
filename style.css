@@ -26,14 +26,14 @@ body {
 .container {
     max-width: 680px;
     margin: 0 auto;
-    padding: 16px 16px 24px;
+    padding: 14px 16px 20px;
 }
 
 /* 标签切换 */
 .tabs {
     display: flex;
     gap: 6px;
-    margin-bottom: 18px;
+    margin-bottom: 14px;
     background-color: #f5ebe0;
     padding: 5px;
     border-radius: 12px;
@@ -72,7 +72,7 @@ body {
     font-size: 21px;
     font-weight: 500;
     color: #7a5230;
-    margin-bottom: 18px;
+    margin-bottom: 14px;
     line-height: 1.5;
 }
 
@@ -80,7 +80,7 @@ body {
 .primary-btn {
     display: block;
     width: 220px;
-    margin: 0 auto 24px;
+    margin: 0 auto 18px;
     padding: 12px 30px;
     background-color: #d4a373;
     color: #fff;
@@ -108,7 +108,7 @@ body {
 .secondary-btn {
     display: block;
     width: 180px;
-    margin: 12px auto 0;
+    margin: 10px auto 0;
     padding: 10px 20px;
     background-color: #fff;
     color: #a67c52;
@@ -134,7 +134,7 @@ body {
 /* 翻转卡片 */
 .card {
     width: 170px;
-    height: 200px;
+    height: 180px;
     perspective: 1000px;
     cursor: pointer;
 }
@@ -157,7 +157,7 @@ body {
     height: 100%;
     backface-visibility: hidden;
     border-radius: 14px;
-    padding: 16px 14px;
+    padding: 14px 12px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -176,7 +176,7 @@ body {
     transform: rotateY(180deg);
     border: 1px solid #f0e1d2;
     justify-content: flex-start;
-    padding-top: 20px;
+    padding-top: 18px;
 }
 
 .card-tag {
@@ -186,7 +186,7 @@ body {
     color: #a67c52;
     border-radius: 12px;
     font-size: 12px;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     font-weight: 500;
 }
 
@@ -336,7 +336,7 @@ body {
     text-align: center;
     color: #b08968;
     font-size: 13px;
-    margin-top: 22px;
+    margin-top: 20px;
     padding-top: 12px;
     border-top: 1px solid #f5ebe0;
 }
@@ -344,28 +344,28 @@ body {
 /* 移动端极致适配 */
 @media (max-width: 600px) {
     .container {
-        padding: 14px 14px 20px;
+        padding: 12px 14px 18px;
     }
     
     .main-title {
         font-size: 19px;
-        margin-bottom: 16px;
+        margin-bottom: 12px;
     }
     
     .card-container {
         flex-direction: column;
         align-items: center;
-        gap: 12px;
+        gap: 10px;
     }
     
     .card {
         width: 100%;
         max-width: 320px;
-        height: 120px;
+        height: 115px;
     }
     
     .card-back {
-        padding-top: 16px;
+        padding-top: 14px;
     }
     
     .card-tag {
@@ -386,14 +386,14 @@ body {
         max-width: 260px;
         padding: 13px;
         font-size: 16px;
-        margin-bottom: 20px;
+        margin-bottom: 16px;
     }
     
     .secondary-btn {
         width: 100%;
         max-width: 220px;
         padding: 10px;
-        margin-top: 12px;
+        margin-top: 10px;
     }
     
     .tab-btn {
