@@ -113,6 +113,22 @@ function drawCards() {
 drawBtn.addEventListener('click', drawCards);
 refreshBtn.addEventListener('click', drawCards);
 
+/* 并列按钮组 */
+.btn-group {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 16px;
+    flex-wrap: wrap;
+}
+
+.btn-group .secondary-btn {
+    margin: 0;
+    flex: 1;
+    max-width: 170px;
+    width: auto;
+}
+
 // 主题列表切换
 const topicList = document.getElementById('topic-list');
 
