@@ -23,14 +23,13 @@
         <div class="tab-content active" id="draw-tab">
             <h1 class="main-title">今天不知道拍什么？<br>来抽个灵感锦囊吧</h1>
             
-            <button id="draw-btn" class="primary-btn">抽取灵感 🎲</button>
+            <button id="draw-btn" class="primary-btn">点这里抽取灵感 🎲</button>
 
             <div class="card-container" id="card-container">
                 <div class="card" data-type="solo">
                     <div class="card-inner">
                         <div class="card-front">
                             <div class="card-tag">🧑 单人就能拍</div>
-                            <div class="card-hint">点击抽取解锁</div>
                         </div>
                         <div class="card-back">
                             <div class="card-tag">🧑 单人就能拍</div>
@@ -44,7 +43,6 @@
                     <div class="card-inner">
                         <div class="card-front">
                             <div class="card-tag">👥 需要小伙伴</div>
-                            <div class="card-hint">点击抽取解锁</div>
                         </div>
                         <div class="card-back">
                             <div class="card-tag">👥 需要小伙伴</div>
@@ -58,7 +56,6 @@
                     <div class="card-inner">
                         <div class="card-front">
                             <div class="card-tag">🔥 挑战一下！</div>
-                            <div class="card-hint">点击抽取解锁</div>
                         </div>
                         <div class="card-back">
                             <div class="card-tag">🔥 挑战一下！</div>
@@ -70,6 +67,10 @@
             </div>
 
             <button id="refresh-btn" class="secondary-btn" style="display: none;">换一组试试 🔄</button>
+            <button id="toggle-list-btn" class="secondary-btn">点这里查看全部灵感 📋</button>
+
+            <!-- 主题列表区域 默认隐藏 -->
+            <div id="topic-list" class="topic-list" style="display: none; margin-top: 24px;"></div>
         </div>
 
         <!-- 随机问答库页面（默认锁定） -->
