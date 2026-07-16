@@ -11,6 +11,7 @@ body {
     line-height: 1.55;
     min-height: 100vh;
     -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
 }
 
 /* 顶部提示栏 */
@@ -88,7 +89,7 @@ body {
     border-radius: 30px;
     font-size: 16px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     box-shadow: 0 4px 12px rgba(212, 163, 115, 0.3);
     font-weight: 500;
 }
@@ -96,6 +97,11 @@ body {
 .primary-btn:hover {
     background-color: #c49262;
     transform: translateY(-2px);
+}
+
+.primary-btn:active {
+    transform: translateY(0);
+    opacity: 0.9;
 }
 
 .primary-btn.small {
@@ -108,33 +114,37 @@ body {
 .secondary-btn {
     display: block;
     width: 180px;
-    margin: 10px auto 0;
-    padding: 10px 20px;
+    padding: 10px 12px;
     background-color: #fff;
     color: #a67c52;
     border: 1px solid #d4a373;
     border-radius: 25px;
-    font-size: 14px;
+    font-size: 13.5px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
 }
 
 .secondary-btn:hover {
     background-color: #faf3eb;
 }
 
+.secondary-btn:active {
+    opacity: 0.85;
+}
+
 /* 并列按钮组 */
 .btn-group {
     display: flex;
-    gap: 12px;
+    gap: 10px;
     justify-content: center;
     margin-top: 16px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 
 .btn-group .secondary-btn {
     margin: 0;
     flex: 1;
+    min-width: 0;
     max-width: 170px;
     width: auto;
 }
@@ -152,7 +162,7 @@ body {
     width: 170px;
     height: 180px;
     perspective: 1000px;
-    cursor: pointer;
+    cursor: default;
 }
 
 .card-inner {
@@ -180,6 +190,7 @@ body {
     align-items: center;
     text-align: center;
     box-shadow: 0 4px 16px rgba(166, 124, 82, 0.12);
+    overflow: hidden;
 }
 
 .card-front {
@@ -204,6 +215,7 @@ body {
     font-size: 12px;
     margin-bottom: 8px;
     font-weight: 500;
+    flex-shrink: 0;
 }
 
 .card-title {
@@ -212,12 +224,14 @@ body {
     margin-bottom: 8px;
     font-weight: 500;
     line-height: 1.4;
+    flex-shrink: 0;
 }
 
 .card-desc {
     font-size: 13px;
     color: #8b7355;
-    line-height: 1.55;
+    line-height: 1.5;
+    overflow: hidden;
 }
 
 /* 通用折叠列表样式（主题、贴士、问题通用） */
@@ -236,6 +250,19 @@ body {
     align-items: center;
     cursor: pointer;
     background-color: #faf7f2;
+}
+
+.topic-header::after, .tip-header::after, .question-header::after {
+    content: '▸';
+    color: #b08968;
+    font-size: 14px;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+    margin-left: 10px;
+}
+
+.topic-header.open::after, .tip-header.open::after, .question-header.open::after {
+    transform: rotate(90deg);
 }
 
 .topic-header h3, .tip-header h3, .question-header h3 {
@@ -405,11 +432,13 @@ body {
         margin-bottom: 16px;
     }
     
-    .secondary-btn {
-        width: 100%;
-        max-width: 220px;
-        padding: 10px;
-        margin-top: 10px;
+    .btn-group {
+        gap: 8px;
+    }
+    
+    .btn-group .secondary-btn {
+        font-size: 13px;
+        padding: 9px 8px;
     }
     
     .tab-btn {
