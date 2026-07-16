@@ -5,6 +5,7 @@ const QUESTION_PASSWORD = "2026";
 let isQuestionsUnlocked = false;
 let isTopicListRendered = false;
 let isTipsRendered = false;
+let isDrawing = false; // 动画锁，防止快速点击导致错乱
 
 // 标签切换功能
 document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -42,6 +43,11 @@ const lockError = document.getElementById('lock-error');
 const passwordLock = document.getElementById('password-lock');
 const questionsContent = document.getElementById('questions-content');
 
+// 输入时自动隐藏错误提示
+passwordInput.addEventListener('input', () => {
+    lockError.style.display = 'none';
+});
+
 function unlockQuestions() {
     const input = passwordInput.value;
     if (input === QUESTION_PASSWORD) {
@@ -77,6 +83,10 @@ const btnGroup = document.getElementById('btn-group');
 const cards = document.querySelectorAll('.card');
 
 function drawCards() {
+    // 动画过程中禁止重复点击
+    if (isDrawing) return;
+    isDrawing = true;
+
     // 从三个池子各取一个
     const soloItem = getRandomItem(window.topicsData.solo);
     const multiItem = getRandomItem(window.topicsData.multi);
@@ -107,6 +117,11 @@ function drawCards() {
         
         // 抽取后显示按钮组
         btnGroup.style.display = 'flex';
+
+        // 动画结束后解锁
+        setTimeout(() => {
+            isDrawing = false;
+        }, 1000);
     }, 300);
 }
 
@@ -164,6 +179,7 @@ function renderTopicList() {
         
         // 折叠展开
         item.querySelector('.topic-header').addEventListener('click', () => {
+            item.querySelector('.topic-header').classList.toggle('open');
             item.querySelector('.topic-body').classList.toggle('open');
         });
     });
@@ -191,6 +207,7 @@ function renderTips() {
         
         // 折叠展开
         item.querySelector('.tip-header').addEventListener('click', () => {
+            item.querySelector('.tip-header').classList.toggle('open');
             item.querySelector('.tip-body').classList.toggle('open');
         });
     });
@@ -220,6 +237,7 @@ function renderQuestions() {
         
         // 折叠展开
         item.querySelector('.question-header').addEventListener('click', () => {
+            item.querySelector('.question-header').classList.toggle('open');
             item.querySelector('.question-body').classList.toggle('open');
         });
     });
