@@ -16,12 +16,13 @@
         <!-- 标签切换 -->
         <div class="tabs">
             <button class="tab-btn active" data-tab="draw">✨ 灵感抽签</button>
-            <button class="tab-btn" data-tab="questions">💬 随机问答库</button>
+            <button class="tab-btn" data-tab="tips">📝 录制宝典</button>
+            <button class="tab-btn" data-tab="questions">💬 问答库</button>
         </div>
 
         <!-- 抽签页面 -->
         <div class="tab-content active" id="draw-tab">
-            <h1 class="main-title">今天不知道拍什么？<br>来抽个灵感锦囊吧</h1>
+            <h1 class="main-title">今天不知道拍什么？<br>来抽个灵感锦囊吧！</h1>
             
             <button id="draw-btn" class="primary-btn">点这里抽取灵感 🎲</button>
 
@@ -67,10 +68,17 @@
             </div>
 
             <button id="refresh-btn" class="secondary-btn" style="display: none;">换一组试试 🔄</button>
-            <button id="toggle-list-btn" class="secondary-btn">点这里查看全部灵感 📋</button>
+            <button id="toggle-list-btn" class="secondary-btn" style="display: none;">点这里看全部灵感 📋</button>
 
             <!-- 主题列表区域 默认隐藏 -->
             <div id="topic-list" class="topic-list" style="display: none; margin-top: 24px;"></div>
+        </div>
+
+        <!-- 录制宝典页面 -->
+        <div class="tab-content" id="tips-tab">
+            <h2 class="section-title">不要慌！这里有些小贴士</h2>
+            <p class="section-desc">点击标题展开查看详细说明</p>
+            <div id="tip-list" class="tip-list"></div>
         </div>
 
         <!-- 随机问答库页面（默认锁定） -->
@@ -87,7 +95,7 @@
 
             <!-- 问答内容（默认隐藏） -->
             <div id="questions-content" style="display: none;">
-                <h2 class="section-title">💬 随机问答库</h2>
+                <h2 class="section-title">💬 问答库</h2>
                 <p class="section-desc">按主题分类浏览，方便现场快速取用</p>
                 <div id="question-list" class="question-list"></div>
             </div>
@@ -101,6 +109,7 @@
 
     <!-- 数据文件 -->
     <script src="data/topics.js"></script>
+    <script src="data/tips.js"></script>
     <script src="data/questions.js"></script>
     <script src="script.js"></script>
 </body>
