@@ -3,7 +3,8 @@ const QUESTION_PASSWORD = "2026";
 // ==========================================
 
 let isQuestionsUnlocked = false;
-let isListRendered = false;
+let isTopicListRendered = false;
+let isTipsRendered = false;
 
 // 标签切换功能
 document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -25,6 +26,12 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
         
         btn.classList.add('active');
         document.getElementById(`${tab}-tab`).classList.add('active');
+
+        // 切换到录制宝典时渲染内容
+        if (tab === 'tips' && !isTipsRendered) {
+            renderTips();
+            isTipsRendered = true;
+        }
     });
 });
 
@@ -65,6 +72,7 @@ function getRandomItem(arr) {
 // 抽签逻辑
 const drawBtn = document.getElementById('draw-btn');
 const refreshBtn = document.getElementById('refresh-btn');
+const toggleListBtn = document.getElementById('toggle-list-btn');
 const cards = document.querySelectorAll('.card');
 
 function drawCards() {
@@ -96,7 +104,9 @@ function drawCards() {
             }, index * 200);
         });
         
+        // 抽取后显示两个按钮
         refreshBtn.style.display = 'block';
+        toggleListBtn.style.display = 'block';
     }, 300);
 }
 
@@ -104,21 +114,20 @@ drawBtn.addEventListener('click', drawCards);
 refreshBtn.addEventListener('click', drawCards);
 
 // 主题列表切换
-const toggleListBtn = document.getElementById('toggle-list-btn');
 const topicList = document.getElementById('topic-list');
 
 toggleListBtn.addEventListener('click', () => {
     if (topicList.style.display === 'none') {
         // 首次点击渲染列表
-        if (!isListRendered) {
+        if (!isTopicListRendered) {
             renderTopicList();
-            isListRendered = true;
+            isTopicListRendered = true;
         }
         topicList.style.display = 'block';
-        toggleListBtn.textContent = '收起主题列表 ↑';
+        toggleListBtn.textContent = '收起灵感列表 ↑';
     } else {
         topicList.style.display = 'none';
-        toggleListBtn.textContent = '查看全部主题列表 📋';
+        toggleListBtn.textContent = '点这里看全部灵感 📋';
     }
 });
 
@@ -156,6 +165,33 @@ function renderTopicList() {
         // 折叠展开
         item.querySelector('.topic-header').addEventListener('click', () => {
             item.querySelector('.topic-body').classList.toggle('open');
+        });
+    });
+}
+
+// 渲染录制宝典列表
+function renderTips() {
+    const container = document.getElementById('tip-list');
+    const data = window.tipsData;
+    
+    data.forEach((tip) => {
+        const item = document.createElement('div');
+        item.className = 'tip-item';
+        
+        item.innerHTML = `
+            <div class="tip-header">
+                <h3>${tip.title}</h3>
+            </div>
+            <div class="tip-body">
+                <div class="tip-content">${tip.content}</div>
+            </div>
+        `;
+        
+        container.appendChild(item);
+        
+        // 折叠展开
+        item.querySelector('.tip-header').addEventListener('click', () => {
+            item.querySelector('.tip-body').classList.toggle('open');
         });
     });
 }
